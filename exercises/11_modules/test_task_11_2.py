@@ -11,18 +11,32 @@ from common_functions import (
     unify_topology_dict,
 )
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_function_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_11_2, "create_network_map")
 
 
 def test_function_params():
+    """
+    Проверка имен и количества параметров
+    """
     check_function_params(
         function=task_11_2.create_network_map, param_count=1, param_names=["filenames"]
     )
 
 
 def test_function_return_value():
+    """
+    Проверка работы функции
+    """
     sh_cdp_n_sw1 = (
         "SW1>show cdp neighbors\n\n"
         "Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge\n"
@@ -45,7 +59,7 @@ def test_function_return_value():
 
     return_value = task_11_2.create_network_map(glob.glob("sh_cdp_n_*"))
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == dict, "Функция должна возвращать словарь"
+    assert type(return_value) == dict, f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert len(return_value) == len(
         correct_return_value
     ), "В словаре, который описывает топологию есть дублирующиеся линки"
