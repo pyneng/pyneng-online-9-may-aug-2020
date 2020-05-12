@@ -1,0 +1,29 @@
+---
+
+- name: Run show commands on routers
+  hosts: all
+  gather_facts: false
+  #strategy: free
+
+  tasks:
+
+    - name: run sh ip int br        
+      ios_command:
+        commands: sh ip int br
+      #ignore_errors: true
+
+    - name: run sh ip arp
+      ios_command:
+        commands: sh ip arp
+
+
+- name: Run command on R1
+  hosts: 192.168.100.1
+  gather_facts: false
+
+  tasks:
+
+    - name: run sh clock
+      ios_command:
+        commands: sh clock
+
