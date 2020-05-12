@@ -2,7 +2,7 @@
 """
 Задание 9.1a
 
-Сделать копию функции из задания 9.1.
+Сделать копию функции generate_access_config из задания 9.1.
 
 Дополнить скрипт:
 * ввести дополнительный параметр, который контролирует будет ли настроен port-security
@@ -17,6 +17,10 @@
 
 Проверить работу функции на примере словаря access_config,
 с генерацией конфигурации port-security и без.
+
+Пример вызова функции:
+print(generate_access_config(access_mode_template, access_config))
+print(generate_access_config(access_mode_template, access_config, port_security_template))
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
