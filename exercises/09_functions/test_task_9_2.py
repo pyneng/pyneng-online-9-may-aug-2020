@@ -67,3 +67,34 @@ def test_function_return_value():
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
+
+
+def test_function_return_value_different_args():
+    """
+    Проверка работы функции с другими аргументами
+    """
+    trunk_vlans_mapping = {
+        "FastEthernet0/11": [101, 120, 130],
+        "FastEthernet0/12": [101, 130],
+    }
+    template_trunk_mode = [
+        "switchport mode trunk",
+        "switchport trunk allowed vlan",
+    ]
+    correct_return_value = [
+        "interface FastEthernet0/11",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan 101,120,130",
+        "interface FastEthernet0/12",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan 101,130",
+    ]
+
+    return_value = task_9_2.generate_trunk_config(
+        trunk_vlans_mapping, template_trunk_mode
+    )
+    assert return_value != None, "Функция ничего не возвращает"
+    assert type(return_value) == list, f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    assert (
+        return_value == correct_return_value
+    ), "Функция возвращает неправильное значение"

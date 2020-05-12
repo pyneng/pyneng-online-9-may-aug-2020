@@ -54,6 +54,8 @@ def test_function_return_value():
     assert len(return_value) == 2 and all(
         type(item) == dict for item in return_value
     ), "Функция должна возвращать кортеж с двумя словарями"
+
+    access, trunk = return_value
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
