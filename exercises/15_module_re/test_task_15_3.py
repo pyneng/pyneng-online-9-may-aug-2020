@@ -6,12 +6,23 @@ sys.path.append("..")
 
 from common_functions import check_function_exists
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_function_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_15_3, "convert_ios_nat_to_asa")
 
 
 def test_function_return_value(tmpdir):
+    """
+    Проверка работы функции
+    """
     asa_nat_config = (
         "object network LOCAL_10.66.0.13\n"
         " host 10.66.0.13\n"
