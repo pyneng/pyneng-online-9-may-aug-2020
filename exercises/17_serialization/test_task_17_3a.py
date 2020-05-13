@@ -12,8 +12,16 @@ from common_functions import (
     get_func_params_default_value,
 )
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_function_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_17_3a, "generate_topology_from_cdp")
 
 
@@ -32,6 +40,9 @@ def test_function_params():
 
 
 def test_function_return_value():
+    """
+    Проверка работы функции
+    """
     list_of_cdp_files = [
         "sh_cdp_n_r2.txt",
         "sh_cdp_n_r5.txt",
@@ -62,7 +73,7 @@ def test_function_return_value():
 
     return_value = task_17_3a.generate_topology_from_cdp(list_of_cdp_files)
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == dict, "Функция должна возвращать словарь"
+    assert type(return_value) == dict, f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
