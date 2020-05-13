@@ -37,7 +37,7 @@ Ethernet0/1                unassigned      YES NVRAM  administratively down down
 """
 
 commands = {
+    "192.168.100.3": "sh ip int br",
     "192.168.100.1": "sh ip int br",
     "192.168.100.2": "sh arp",
-    "192.168.100.3": "sh ip int br",
 }

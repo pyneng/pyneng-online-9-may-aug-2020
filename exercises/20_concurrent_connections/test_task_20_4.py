@@ -6,14 +6,25 @@ sys.path.append("..")
 
 from common_functions import check_function_exists
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_functions_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_20_4, "send_commands_to_devices")
 
 
 def test_function_return_value_show(
     three_routers_from_devices_yaml, r1_r2_r3_test_connection, tmpdir
 ):
+    """
+    Проверка работы функции
+    """
     routers_ip = [router["ip"] for router in three_routers_from_devices_yaml]
     command = "sh ip int br"
     out1, out2, out3 = [r.send_command(command) for r in r1_r2_r3_test_connection]

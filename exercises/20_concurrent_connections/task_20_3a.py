@@ -49,7 +49,7 @@ O        10.30.0.0/24 [110/20] via 192.168.100.1, 07:12:03, Ethernet0/0
 """
 
 commands = {
+    "192.168.100.3": ["sh ip int br", "sh ip route | ex -"],
     "192.168.100.1": ["sh ip int br", "sh arp"],
     "192.168.100.2": ["sh arp"],
-    "192.168.100.3": ["sh ip int br", "sh ip route | ex -"],
 }
