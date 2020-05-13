@@ -2,12 +2,21 @@ import re
 
 import yaml
 import pytest
-import task_19_2c
+try:
+    import task_19_2c
+except OSError:
+    pytest.fail("Для этого задания функцию надо ОБЯЗАТЕЛЬНО вызывать в блоке if __name__ == '__main__':")
+
 import sys
 
 sys.path.append("..")
 
 from common_functions import check_function_exists
+
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
 
 correct_return_value = (
@@ -49,6 +58,9 @@ test_commands = commands_with_errors + correct_commands
 
 
 def test_functions_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_19_2c, "send_config_commands")
 
 

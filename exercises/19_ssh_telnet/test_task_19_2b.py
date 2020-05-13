@@ -9,6 +9,11 @@ sys.path.append("..")
 
 from common_functions import check_function_exists
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 correct_return_value = (
     {
@@ -45,10 +50,16 @@ correct_return_value = (
 
 
 def test_functions_created():
+    """
+    Проверка, что функция создана
+    """
     check_function_exists(task_19_2b, "send_config_commands")
 
 
 def test_function_return_value(capsys, first_router_from_devices_yaml):
+    """
+    Проверка работы функции
+    """
     commands_with_errors = ["logging 0255.255.1", "logging", "a"]
     correct_commands = ["logging buffered 20010", "ip http server"]
     test_commands = commands_with_errors + correct_commands
@@ -94,3 +105,4 @@ def test_function_stdout(error, command, capsys, first_router_from_devices_yaml)
     assert error in out, "В сообщении об ошибке нет самой ошибки"
     assert command in out, "В сообщении об ошибке нет выполняемой команды"
     assert ip in out, "В сообщении об ошибке нет IP-адреса устройства"
+
