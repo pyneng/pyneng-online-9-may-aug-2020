@@ -5,6 +5,7 @@ from subprocess import run, PIPE
 from concurrent.futures import ThreadPoolExecutor
 import re
 import yaml
+from netmiko import ConnectHandler
 
 
 stdout_incorrect_warning = """
@@ -16,7 +17,7 @@ stdout_incorrect_warning = """
 
 def check_attr_or_method(obj, attr=None, method=None):
     if attr:
-        assert getattr(obj, attr, None) != None, "Атрибут не найден"
+        assert getattr(obj, attr, None) != None, "Переменная не найдена"
         assert not inspect.ismethod(
             getattr(obj, attr)
         ), f"{attr} должен быть переменной, а не методом"
@@ -95,3 +96,10 @@ def unify_topology_dict(topology_dict):
         min(key, value): max(key, value) for key, value in topology_dict.items()
     }
     return unified_topology_dict
+
+
+def create_ssh_connect(device):
+    connection = ConnectHandler(**device)
+    connection.enable()
+    return connection
+

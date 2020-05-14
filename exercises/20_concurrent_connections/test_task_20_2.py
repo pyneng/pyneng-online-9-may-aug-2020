@@ -35,7 +35,7 @@ def test_functions_created():
 
 
 @pytest.mark.parametrize(
-    "device,command", [(r1, "sh arp"), (r2, "sh ip int br"), (r3, "sh int desc")],
+    "device,command", [(r1, "sh version"), (r2, "sh ip int br"), (r3, "sh int desc")],
 )
 def test_function_return_value_from_single_device(
     three_routers_from_devices_yaml, r1_r2_r3_test_connection, tmpdir, device, command
