@@ -25,10 +25,10 @@ def test_function_return_value_show(
     """
     Проверка работы функции
     """
-    routers_ip = [router["ip"] for router in three_routers_from_devices_yaml]
+    routers_ip = [router["host"] for router in three_routers_from_devices_yaml]
     command = "sh ip int br"
     out1, out2, out3 = [r.send_command(command) for r in r1_r2_r3_test_connection]
-    dest_filename = tmpdir.mkdir("test_tasks").join("task_20_3.txt")
+    dest_filename = tmpdir.mkdir("test_tasks").join("task_20_4.txt")
 
     return_value = task_20_4.send_commands_to_devices(
         three_routers_from_devices_yaml, show=command, filename=dest_filename, limit=3
@@ -52,10 +52,10 @@ def test_function_return_value_show(
 def test_function_return_value_config(
     three_routers_from_devices_yaml, r1_r2_r3_test_connection, tmpdir
 ):
-    routers_ip = [router["ip"] for router in three_routers_from_devices_yaml]
+    routers_ip = [router["host"] for router in three_routers_from_devices_yaml]
     command = "logging 10.5.5.5"
     out1, out2, out3 = [r.send_config_set(command) for r in r1_r2_r3_test_connection]
-    dest_filename = tmpdir.mkdir("test_tasks").join("task_20_3.txt")
+    dest_filename = tmpdir.mkdir("test_tasks").join("task_20_4.txt")
 
     return_value = task_20_4.send_commands_to_devices(
         three_routers_from_devices_yaml, config=command, filename=dest_filename, limit=3
