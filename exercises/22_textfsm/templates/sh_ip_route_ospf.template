@@ -7,5 +7,5 @@ Value List nexthop (\S+)
 Start
   ^O -> Continue.Record
   ^O +${network}/${mask}\s\[${distance}\/${metric}\]\svia\s${nexthop},
-  ^\s+\[${distance}\/${metric}\]\svia\s${nextHop},
+  ^\s+\[${distance}\/${metric}\]\svia\s${nexthop},
 
