@@ -7,8 +7,16 @@ sys.path.append("..")
 
 from common_functions import check_class_exists, check_attr_or_method, strip_empty_lines
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_class_created():
+    """
+    Проверка, что класс создан
+    """
     check_class_exists(task_25_2a, "CiscoTelnet")
 
 
@@ -25,7 +33,7 @@ def test_class(first_router_from_devices_yaml, r1_test_telnet_connection):
         "sh ip int br", use_textfsm=True
     )
     return_value = r1.send_show_command(
-        "sh ip int br", templates="templates", parse=True
+        "sh ip int br", parse=True, templates="templates", index="index"
     )
     assert (
         correct_return_value == return_value

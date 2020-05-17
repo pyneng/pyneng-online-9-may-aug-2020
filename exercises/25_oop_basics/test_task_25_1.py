@@ -6,8 +6,17 @@ sys.path.append("..")
 
 from common_functions import check_class_exists, check_attr_or_method
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_class_created():
+    """
+    Проверка, что класс создан
+    """
     check_class_exists(task_25_1, "Topology")
 
 
@@ -40,4 +49,6 @@ def test_topology_normalization():
     }
 
     top_with_data = task_25_1.Topology(topology_with_dupl_links)
-    assert len(top_with_data.topology) == len(normalized_topology_example)
+    assert len(top_with_data.topology) == len(
+        normalized_topology_example
+    ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"
