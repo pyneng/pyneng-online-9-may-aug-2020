@@ -4,6 +4,12 @@ import task_21_1
 import task_21_2
 
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
+
 def test_templates_exists():
     assert os.path.exists(
         "templates/cisco_router_base.txt"

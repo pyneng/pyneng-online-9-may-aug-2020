@@ -6,6 +6,11 @@ sys.path.append("..")
 
 from common_functions import check_function_exists, strip_empty_lines
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_functions_created():
     check_function_exists(task_21_1, "generate_config")
@@ -47,7 +52,7 @@ def test_function_return_value():
     }
     return_value = task_21_1.generate_config(template, data)
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == str, "Функция должна возвращать строку"
+    assert type(return_value) == str, f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
     assert strip_empty_lines(return_value) == strip_empty_lines(
         correct_return_value
     ), "Функция возвращает неправильное значение"

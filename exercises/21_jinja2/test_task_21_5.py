@@ -7,6 +7,11 @@ sys.path.append("..")
 
 from common_functions import check_function_exists, strip_empty_lines
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
 
 def test_templates_exists():
     assert os.path.exists(
