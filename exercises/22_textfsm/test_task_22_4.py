@@ -10,6 +10,7 @@ from common_functions import check_function_exists
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -33,17 +34,21 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
 
     full_pth = os.path.join(os.getcwd(), "templates")
     return_value = task_22_4.send_and_parse_show_command(
-        first_router_from_devices_yaml, "sh ip int br", full_pth
+        first_router_from_devices_yaml, "sh ip int br", templates_path=full_pth
     )
 
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == list, f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == list
+    ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
 
 
-def test_function_return_value_different_args(r1_test_connection, first_router_from_devices_yaml):
+def test_function_return_value_different_args(
+    r1_test_connection, first_router_from_devices_yaml
+):
     """
     Проверка работы функции с другими аргументами
     """
@@ -55,11 +60,13 @@ def test_function_return_value_different_args(r1_test_connection, first_router_f
 
     full_pth = os.path.join(os.getcwd(), "templates")
     return_value = task_22_4.send_and_parse_show_command(
-        first_router_from_devices_yaml, "sh version", full_pth
+        first_router_from_devices_yaml, "sh version", templates_path=full_pth
     )
 
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == list, f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == list
+    ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
