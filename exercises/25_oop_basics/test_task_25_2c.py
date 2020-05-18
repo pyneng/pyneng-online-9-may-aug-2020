@@ -9,6 +9,7 @@ from common_functions import check_class_exists, check_attr_or_method, strip_emp
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -40,7 +41,9 @@ def test_send_config_commands_correct_commands(first_router_from_devices_yaml, c
         ("Ambiguous command", "a"),
     ],
 )
-def test_send_config_commands_wrong_commands(first_router_from_devices_yaml, capsys, error, command):
+def test_send_config_commands_wrong_commands(
+    first_router_from_devices_yaml, capsys, error, command
+):
     r1 = task_25_2c.CiscoTelnet(**first_router_from_devices_yaml)
 
     # команда с ошибкой strict=False

@@ -8,6 +8,7 @@ from common_functions import check_function_exists, read_all_csv_content_as_list
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -41,7 +42,9 @@ def test_return_value(tmpdir):
     csv_content = read_all_csv_content_as_list(dest_filename)
     correct_return_value = sorted(unique_data)
 
-    assert return_value == None, f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
+    assert (
+        return_value == None
+    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
     assert (
         sorted(csv_content) == correct_return_value
     ), "Функция возвращает неправильное значение"

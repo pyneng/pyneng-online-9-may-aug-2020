@@ -24,8 +24,9 @@ def r1_r2_r3_test_connection(three_routers_from_devices_yaml):
     yield connections
     for r in connections:
         r.disconnect()
+
+
 def create_ssh_connect(device):
     connection = ConnectHandler(**device)
     connection.enable()
     return connection
-

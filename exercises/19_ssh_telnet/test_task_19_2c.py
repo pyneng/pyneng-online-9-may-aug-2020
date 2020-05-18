@@ -2,10 +2,13 @@ import re
 
 import yaml
 import pytest
+
 try:
     import task_19_2c
 except OSError:
-    pytest.fail("Для этого задания функцию надо ОБЯЗАТЕЛЬНО вызывать в блоке if __name__ == '__main__':")
+    pytest.fail(
+        "Для этого задания функцию надо ОБЯЗАТЕЛЬНО вызывать в блоке if __name__ == '__main__':"
+    )
 
 import sys
 
@@ -15,6 +18,7 @@ from common_functions import check_function_exists
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 

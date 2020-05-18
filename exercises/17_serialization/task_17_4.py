@@ -44,4 +44,3 @@ def convert_datetimestr_to_datetime(datetime_str):
     Конвертирует строку с датой в формате 11/10/2019 14:05 в объект datetime.
     """
     return datetime.datetime.strptime(datetime_str, "%d/%m/%Y %H:%M")
-

@@ -13,6 +13,7 @@ from common_functions import (
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -59,7 +60,9 @@ def test_function_return_value():
 
     return_value = task_11_2.create_network_map(glob.glob("sh_cdp_n_*"))
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == dict, f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == dict
+    ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert len(return_value) == len(
         correct_return_value
     ), "В словаре, который описывает топологию есть дублирующиеся линки"

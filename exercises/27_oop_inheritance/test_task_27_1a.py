@@ -1,8 +1,11 @@
 import pytest
+
 try:
     import task_27_1a
 except OSError:
-    pytest.fail("Для этого задания функцию надо ОБЯЗАТЕЛЬНО вызывать в блоке if __name__ == '__main__':")
+    pytest.fail(
+        "Для этого задания функцию надо ОБЯЗАТЕЛЬНО вызывать в блоке if __name__ == '__main__':"
+    )
 
 from base_connect_class import BaseSSH
 from netmiko.ssh_exception import SSHException
@@ -14,6 +17,7 @@ from common_functions import check_class_exists, check_attr_or_method
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 

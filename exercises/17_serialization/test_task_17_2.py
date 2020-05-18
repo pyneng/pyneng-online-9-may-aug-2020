@@ -8,6 +8,7 @@ from common_functions import check_function_exists, read_all_csv_content_as_list
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -42,7 +43,9 @@ def test_parse_sh_version_return_value():
 
     return_value_r1 = task_17_2.parse_sh_version(sh_version_r1)
     assert return_value_r1 != None, "Функция ничего не возвращает"
-    assert type(return_value_r1) == tuple, f"По заданию функция должна возвращать кортеж, а возвращает {type(return_value_r1).__name__}"
+    assert (
+        type(return_value_r1) == tuple
+    ), f"По заданию функция должна возвращать кортеж, а возвращает {type(return_value_r1).__name__}"
     assert (
         return_value_r1 == correct_return_value_r1
     ), "Функция возвращает неправильное значение для вывода r1"
@@ -73,7 +76,9 @@ def test_write_to_csv_return_value(tmpdir):
     csv_content = read_all_csv_content_as_list(dest_filename)
     correct_return_value = sorted(routers_inventory)
 
-    assert return_value == None, f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
+    assert (
+        return_value == None
+    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
     assert (
         sorted(csv_content) == correct_return_value
     ), "Функция возвращает неправильное значение"

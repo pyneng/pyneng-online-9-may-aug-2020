@@ -8,6 +8,7 @@ from common_functions import check_function_exists, check_function_params
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -81,7 +82,9 @@ def test_function_return_value():
 
     return_value = task_9_4.convert_config_to_dict("config_sw1.txt")
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == dict, f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == dict
+    ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"

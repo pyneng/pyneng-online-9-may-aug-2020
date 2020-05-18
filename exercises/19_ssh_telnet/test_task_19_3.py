@@ -8,6 +8,7 @@ from common_functions import check_function_exists, check_function_params
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -49,11 +50,12 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
         first_router_from_devices_yaml, config=cfg_commands
     )
     assert return_value_show != None, "Функция ничего не возвращает"
-    assert type(return_value_show) == str, f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value_show) == str
+    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
     assert (
         correct_return_value_show == return_value_show
     ), "Функция возвращает неправильное значение при передаче команды show"
     assert (
         correct_return_value_cfg == return_value_cfg
     ), "Функция возвращает неправильное значение при передаче конфигурационных команд"
-

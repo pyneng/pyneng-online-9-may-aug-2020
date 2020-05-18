@@ -8,6 +8,7 @@ from common_functions import check_function_exists, check_function_params
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -105,7 +106,9 @@ def test_function_return_value():
         access_vlans_mapping, template_access_mode
     )
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == list, f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == list
+    ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value_without_psecurity
     ), "Функция возвращает неправильное значение при вызове с psecurity == None"

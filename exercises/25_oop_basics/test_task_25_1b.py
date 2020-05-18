@@ -39,7 +39,9 @@ def test_topology_normalization(topology_with_dupl_links, normalized_topology_ex
     ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"
 
 
-def test_method_delete_link_created(topology_with_dupl_links, normalized_topology_example):
+def test_method_delete_link_created(
+    topology_with_dupl_links, normalized_topology_example
+):
     """Проверяем, что в объекте Topology есть метод delete_link"""
     norm_top = task_25_1b.Topology(normalized_topology_example)
     check_attr_or_method(norm_top, method="delete_link")

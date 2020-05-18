@@ -8,6 +8,7 @@ from common_functions import check_function_exists
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -31,13 +32,17 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
         first_router_from_devices_yaml, "sh ip int br"
     )
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == str, f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == str
+    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
 
 
-def test_function_return_value_different_args(r1_test_connection, first_router_from_devices_yaml):
+def test_function_return_value_different_args(
+    r1_test_connection, first_router_from_devices_yaml
+):
     """
     Проверка работы функции с другими аргументами
     """
@@ -46,8 +51,9 @@ def test_function_return_value_different_args(r1_test_connection, first_router_f
         first_router_from_devices_yaml, "sh int description"
     )
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == str, f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
+    assert (
+        type(return_value) == str
+    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
     ), "Функция возвращает неправильное значение"
-

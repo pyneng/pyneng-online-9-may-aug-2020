@@ -9,6 +9,7 @@ from common_functions import check_class_exists, check_attr_or_method
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -27,6 +28,8 @@ def test_class_inheritance(first_router_from_devices_yaml):
 
 def test_enable(first_router_from_devices_yaml):
     r1 = task_27_1.CiscoSSH(**first_router_from_devices_yaml)
-    output = r1.send_show_command('sh run | i hostname')
+    output = r1.send_show_command("sh run | i hostname")
     r1.ssh.disconnect()
-    assert "hostname" in output, "При создании экземпляра класса должно создаваться подключение и переход в режим enable"
+    assert (
+        "hostname" in output
+    ), "При создании экземпляра класса должно создаваться подключение и переход в режим enable"

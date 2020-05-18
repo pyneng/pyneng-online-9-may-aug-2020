@@ -52,8 +52,8 @@ def test_send_show_command_parse_false(
     return_value = r1.send_show_command(
         "sh ip int br", parse=False, templates="templates", index="index"
     )
-    assert (
-        strip_empty_lines(correct_return_value) == strip_empty_lines(return_value)
+    assert strip_empty_lines(correct_return_value) == strip_empty_lines(
+        return_value
     ), "Метод send_show_command возвращает неправильное значение с parse=False"
 
 
@@ -82,6 +82,6 @@ def test_send_show_command_different_command(
     return_value = r1.send_show_command(
         "sh version | include IOS", parse=False, templates="templates", index="index"
     )
-    assert (
-        strip_empty_lines(correct_return_value) == strip_empty_lines(return_value)
+    assert strip_empty_lines(correct_return_value) == strip_empty_lines(
+        return_value
     ), "Метод send_show_command возвращает неправильное значение с parse=False"

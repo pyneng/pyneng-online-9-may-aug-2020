@@ -9,6 +9,7 @@ from common_functions import check_class_exists, check_attr_or_method, strip_emp
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -52,7 +53,10 @@ def test_send_config_commands_different_command(first_router_from_devices_yaml):
         cfg_comand in return_value
     ), "Метод send_config_commands возвращает неправильное значение"
 
-    cfg_comands = ["alias configure sh do sh", "alias exec ospf sh run | s ^router ospf"]
+    cfg_comands = [
+        "alias configure sh do sh",
+        "alias exec ospf sh run | s ^router ospf",
+    ]
     return_value = r1.send_config_commands(cfg_comands)
     assert (
         cfg_comands[0] in return_value and cfg_comands[1] in return_value

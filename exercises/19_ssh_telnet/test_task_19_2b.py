@@ -11,6 +11,7 @@ from common_functions import check_function_exists
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
+
 if not isinstance(__loader__, AssertionRewritingHook):
     print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
 
@@ -105,4 +106,3 @@ def test_function_stdout(error, command, capsys, first_router_from_devices_yaml)
     assert error in out, "В сообщении об ошибке нет самой ошибки"
     assert command in out, "В сообщении об ошибке нет выполняемой команды"
     assert ip in out, "В сообщении об ошибке нет IP-адреса устройства"
-
