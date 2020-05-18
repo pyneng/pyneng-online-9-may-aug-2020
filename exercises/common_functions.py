@@ -97,9 +97,3 @@ def unify_topology_dict(topology_dict):
     }
     return unified_topology_dict
 
-
-def create_ssh_connect(device):
-    connection = ConnectHandler(**device)
-    connection.enable()
-    return connection
-

@@ -8,8 +8,10 @@ sys.path.append("..")
 from common_functions import (
     check_function_exists,
     strip_empty_lines,
-    create_ssh_connect,
 )
+
+from conftest import create_ssh_connect
+
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
