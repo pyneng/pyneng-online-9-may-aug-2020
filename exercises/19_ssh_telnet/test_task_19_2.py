@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists
+from common_functions import check_function_exists, strip_empty_lines
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -37,8 +37,8 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
     assert (
         type(return_value) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert (
-        return_value == correct_return_value
+    assert strip_empty_lines(return_value) == strip_empty_lines(
+        correct_return_value
     ), "Функция возвращает неправильное значение"
 
 
@@ -60,6 +60,6 @@ def test_function_return_value_different_args(
     assert (
         type(return_value) == str
     ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert (
-        return_value == correct_return_value
+    assert strip_empty_lines(return_value) == strip_empty_lines(
+        correct_return_value
     ), "Функция возвращает неправильное значение"

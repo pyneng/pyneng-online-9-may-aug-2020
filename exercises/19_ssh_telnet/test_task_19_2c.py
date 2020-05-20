@@ -148,8 +148,6 @@ def test_function_return_value_continue_no(
         type(item) == dict for item in return_value
     ), "Функция должна возвращать кортеж с двумя словарями"
     return_good, return_bad = return_value
-    print(input(""))
-    print(return_value)
     assert (
         len(return_good) == len_good and len(return_bad) == len_bad
     ), "Функция возвращает неправильное значение"
