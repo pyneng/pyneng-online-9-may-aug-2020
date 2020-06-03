@@ -30,3 +30,6 @@ Thumbs.db
 *.un~
 *.pyc
 *.swp
+*.swl
+*.swm
+*.swo
