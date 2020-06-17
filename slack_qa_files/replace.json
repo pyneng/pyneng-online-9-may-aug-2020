@@ -1,0 +1,5 @@
+replace_data = {
+    "10.1.2.3": "LONDON-R1",
+    "10.2.2.5": "LONDON-R5"
+}
+
