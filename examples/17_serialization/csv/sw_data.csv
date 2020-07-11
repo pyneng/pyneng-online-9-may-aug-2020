@@ -1,5 +1,5 @@
 hostname,vendor,model,location
-sw1,Cisco,3750,London
+sw1,Cisco,3750,"London, Globe Str 1 "
 sw2,Cisco,3850,Liverpool
 sw3,Cisco,3650,Liverpool
-sw4,Cisco,3650,London
+sw4,Cisco,3650,"London, Grobe Str 1"
