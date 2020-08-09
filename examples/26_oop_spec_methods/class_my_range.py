@@ -2,20 +2,18 @@ class MyRange:
     def __init__(self, start, stop):
         self.start = start
         self.stop = stop
-        self.current = start
+        self._last_item = start
 
     def __next__(self):
-        print("вызываю __next__")
-        value = self.current
-        if value == self.stop:
+        print("Работает __next__")
+        value = self._last_item
+        if self._last_item == self.stop:
             raise StopIteration
-        self.current += 1
+        self._last_item += 1
         return value
 
     def __iter__(self):
-        print("вызываю __iter__")
         return self
-
 
 if __name__ == "__main__":
     int_range = MyRange(1, 10)

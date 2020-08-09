@@ -22,14 +22,6 @@ class CiscoTelnet:
         time.sleep(0.5)
         self._telnet.read_very_eager()
 
-    def __enter__(self):
-        print("__enter__")
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        print("__exit__")
-        self.close()
-
     def send_show_command(self, command):
         self._telnet.write(command.encode("ascii") + b"\n")
         time.sleep(1)
@@ -65,8 +57,11 @@ class CiscoTelnet:
         output += self.exit_config_mode()
         return output
 
+    def __enter__(self):
+        print("__enter__")
+        return self
 
-if __name__ == "__main__":
-    with CiscoTelnet("192.168.100.1", "cisco", "cisco", "cisco") as r1:
-        print(r1.send_show_command("sh ip int br"))
-        raise ValueError
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("__exit__",  exc_type, exc_value, traceback)
+        self.close()
+
