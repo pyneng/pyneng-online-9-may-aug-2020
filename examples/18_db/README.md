@@ -29,5 +29,5 @@ sqlite> .import rib.table.lg.ba.ptt.br-BGP.csv rib
 Проверка схемы
 
 ```
-sqlite> .schema cities
+sqlite> .schema rib
 ```
