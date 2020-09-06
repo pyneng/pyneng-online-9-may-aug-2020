@@ -30,4 +30,16 @@ sqlite> .import rib.table.lg.ba.ptt.br-BGP.csv rib
 
 ```
 sqlite> .schema rib
+CREATE TABLE rib(
+  "status" TEXT,
+  "network" TEXT,
+  "netmask" TEXT,
+  "nexthop" TEXT,
+  "metric" TEXT,
+  "locprf" TEXT,
+  "weight" TEXT,
+  "path" TEXT,
+  "origin" TEXT
+);
+
 ```
